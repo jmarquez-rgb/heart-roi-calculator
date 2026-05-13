@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HEART AI ROI Calculator · Nextiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --meteor: #000209;
+  --basalt: #2e2d2c;
+  --basalt-87: #4a4846;
+  --basalt-71: #6c6967;
+  --basalt-46: #a39e9b;
+  --limestone: #cdc7c3;
+  --limestone-61: #e1deda;
+  --quartz: #f8f8f6;
+  --calcite: #f9f4ef;
+  --sandstone: #fff8ef;
+  --white: #ffffff;
+  --nextiva-blue: #0062b8;
+  --nightfall-1: #001b39;
+  --nightfall-2: #012d5c;
+  --day-sky-1: #004580;
+  --day-sky-3: #16679e;
+  --day-sky-5: #5096b8;
+  --dawn-1: #90b5be;
+  --ember-1: #ddbf9d;
+  --ember-2: #ffb76f;
+  --ember-3: #ff9c4b;
+  --ember-4: #fd8524;
+  --serif: 'Libre Baskerville', 'Times New Roman', serif;
+  --sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--quartz);
+  color: var(--basalt);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============ NAV / HEADER BAR ============ */
+
+.brand-bar {
+  background: var(--meteor);
+  color: var(--white);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--nightfall-1);
+}
+
+.brand-bar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.brand-mark-logo {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--white);
+}
+
+.brand-mark-logo i {
+  color: var(--ember-4);
+  font-style: normal;
+}
+
+.brand-mark-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--basalt-71);
+}
+
+.brand-mark-product {
+  color: var(--basalt-46);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.brand-bar-meta {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--basalt-46);
+}
+
+/* ============ HERO ============ */
+
+.hero {
+  background: var(--white);
+  padding: 80px 32px 64px;
+  border-bottom: 1px solid var(--limestone);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 98, 184, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(253, 133, 36, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nextiva-blue);
+  font-weight: 500;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--nextiva-blue);
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5.5vw, 64px);
+  line-height: 1.05;
+  font-weight: 400;
+  color: var(--meteor);
+  letter-spacing: -0.02em;
+  max-width: 900px;
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--nextiva-blue);
+}
+
+.hero-sub {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--basalt-71);
+  max-width: 720px;
+  font-weight: 400;
+}
+
+.hero-meta {
+  margin-top: 40px;
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.hero-meta-item {
+  border-left: 2px solid var(--ember-4);
+  padding-left: 18px;
+}
+
+.hero-meta-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--basalt-71);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.hero-meta-value {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--meteor);
+  font-weight: 700;
+}
+
+/* ============ SECTION SCAFFOLDING ============ */
+
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section {
+  padding: 72px 0;
+  border-bottom: 1px solid var(--limestone);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section-head {
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.section-head-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.section-num {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ember-4);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-num::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--ember-4);
+}
+
+.section h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 40px);
+  line-height: 1.15;
+  font-weight: 400;
+  color: var(--meteor);
+  letter-spacing: -0.01em;
+  max-width: 720px;
+}
+
+.section h2 em {
+  font-style: italic;
+  color: var(--nextiva-blue);
+}
+
+.section-sub {
+  font-size: 14px;
+  color: var(--basalt-71);
+  max-width: 640px;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+/* ============ INPUTS ============ */
+
+.inputs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.input-card {
+  background: var(--white);
+  border: 1px solid var(--limestone);
+  border-radius: 4px;
+  padding: 28px;
+  transition: border-color 0.2s ease;
+}
+
+.input-card:hover {
+  border-color: var(--basalt-46);
+}
+
+.input-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--limestone-61);
+}
+
+.input-card-num {
+  font-family: var(--serif);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ember-4);
+  background: var(--sandstone);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.input-card-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--basalt);
+  font-weight: 600;
+}
+
+.input-row {
+  margin-bottom: 18px;
+}
+
+.input-row:last-child {
+  margin-bottom: 0;
+}
+
+.input-label {
+  display: block;
+  font-size: 12px;
+  color: var(--basalt-87);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.input-help {
+  font-size: 11px;
+  color: var(--basalt-71);
+  margin-top: 4px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.input-row input[type="number"],
+.input-row input[type="text"],
+.input-row select {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--meteor);
+  background: var(--quartz);
+  border: 1px solid var(--limestone);
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.input-row input[type="number"]:focus,
+.input-row input[type="text"]:focus,
+.input-row select:focus {
+  outline: none;
+  border-color: var(--nextiva-blue);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(0, 98, 184, 0.08);
+}
+
+.input-triple {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.input-triple-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-triple-label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--basalt-71);
+  margin-bottom: 4px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.input-triple input {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.input-triple input.low { border-top: 2px solid var(--dawn-1); }
+.input-triple input.expected { border-top: 2px solid var(--nextiva-blue); }
+.input-triple input.high { border-top: 2px solid var(--ember-4); }
+
+/* ============ RESULTS DASHBOARD ============ */
+
+.results-band {
+  background: var(--meteor);
+  color: var(--white);
+  padding: 72px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.results-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top right, rgba(0, 98, 184, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(253, 133, 36, 0.10) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.results-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.results-head {
+  margin-bottom: 48px;
+}
+
+.results-head .section-num {
+  color: var(--ember-3);
+}
+
+.results-head .section-num::before {
+  background: var(--ember-3);
+}
+
+.results-head h2 {
+  font-family: var(--serif);
+  color: var(--white);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.results-head h2 em {
+  font-style: italic;
+  color: var(--ember-2);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--basalt-87);
+  border: 1px solid var(--basalt-87);
+}
+
+.result-card {
+  background: var(--meteor);
+  padding: 32px 28px;
+  position: relative;
+}
+
+.result-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--basalt-46);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.result-value {
+  font-family: var(--serif);
+  font-size: 38px;
+  line-height: 1.05;
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.result-value.highlight {
+  color: var(--ember-2);
+}
+
+.result-value.positive {
+  color: #84CC16;
+}
+
+.result-detail {
+  font-size: 11px;
+  color: var(--basalt-46);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.result-range {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--basalt-87);
+  font-size: 10px;
+  color: var(--basalt-46);
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.result-range-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.result-range-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 9px;
+}
+
+.result-range-value {
+  color: var(--white);
+  font-weight: 600;
+  font-size: 12px;
+  font-family: var(--serif);
+}
+
+/* ============ COMPARISON TABLE ============ */
+
+.comparison-wrap {
+  background: var(--white);
+  border: 1px solid var(--limestone);
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 18px 22px;
+  text-align: left;
+  border-bottom: 1px solid var(--limestone-61);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.comparison-table th {
+  background: var(--calcite);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--basalt);
+  font-weight: 600;
+  text-align: right;
+}
+
+.comparison-table th:first-child {
+  text-align: left;
+}
+
+.comparison-table td:first-child {
+  font-weight: 500;
+  color: var(--meteor);
+}
+
+.comparison-table td.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--basalt-87);
+}
+
+.comparison-table td.numeric strong {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--meteor);
+  font-weight: 700;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tr.total {
+  background: var(--sandstone);
+}
+
+.comparison-table tr.total td {
+  font-weight: 600;
+  border-top: 1px solid var(--ember-3);
+}
+
+.comparison-table tr.total td.numeric strong {
+  color: var(--ember-4);
+  font-size: 19px;
+}
+
+/* ============ VOLUME SCENARIO TILES ============ */
+
+.scenarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.scenario {
+  background: var(--white);
+  border: 1px solid var(--limestone);
+  padding: 28px 24px;
+  border-radius: 4px;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.scenario:hover {
+  transform: translateY(-2px);
+  border-color: var(--nextiva-blue);
+}
+
+.scenario-tier {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--basalt-71);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.scenario-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--meteor);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.scenario-volume {
+  font-size: 12px;
+  color: var(--basalt-71);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--limestone-61);
+}
+
+.scenario-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.scenario-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.scenario-stat-label {
+  font-size: 11px;
+  color: var(--basalt-71);
+  letter-spacing: 0.04em;
+}
+
+.scenario-stat-value {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--meteor);
+  font-variant-numeric: tabular-nums;
+}
+
+.scenario-savings {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--limestone-61);
+}
+
+.scenario-savings-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ember-4);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.scenario-savings-value {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ember-4);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ============ CONSIDERATIONS ============ */
+
+.considerations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.consideration {
+  background: var(--white);
+  border: 1px solid var(--limestone);
+  padding: 28px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.consideration-num {
+  font-family: var(--serif);
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--ember-3);
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+
+.consideration h3 {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--meteor);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+
+.consideration p {
+  font-size: 13px;
+  color: var(--basalt-71);
+  line-height: 1.65;
+}
+
+.consideration p + p {
+  margin-top: 12px;
+}
+
+.consideration p strong {
+  color: var(--basalt);
+  font-weight: 600;
+}
+
+/* ============ FOOTER ============ */
+
+footer {
+  background: var(--meteor);
+  color: var(--basalt-46);
+  padding: 48px 32px 32px;
+  margin-top: 0;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--basalt-87);
+  margin-bottom: 24px;
+}
+
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.footer-brand i {
+  color: var(--ember-4);
+  font-style: normal;
+}
+
+.footer-tag {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--basalt-46);
+  margin-top: 6px;
+}
+
+.footer-disclaimer {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--basalt-71);
+  max-width: 560px;
+  font-style: italic;
+}
+
+.footer-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--basalt-71);
+  text-transform: uppercase;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 768px) {
+  .hero { padding: 56px 24px 48px; }
+  .section { padding: 56px 0; }
+  main { padding: 0 24px; }
+  .results-band { padding: 56px 24px; }
+  .input-card { padding: 22px; }
+  .hero-meta { gap: 24px; }
+  .input-triple { gap: 4px; }
+  .input-triple input { font-size: 12px; padding: 8px 4px; }
+  .comparison-table th,
+  .comparison-table td { padding: 14px 12px; font-size: 13px; }
+}
+
+/* Print-friendly */
+@media print {
+  body { background: var(--white); }
+  .results-band, footer { background: var(--white) !important; color: var(--meteor) !important; }
+  .result-card { background: var(--white) !important; color: var(--meteor) !important; }
+  .result-value, .result-label, .result-detail, .result-range, .results-head h2 { color: var(--meteor) !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ BRAND BAR ============ -->
+<div class="brand-bar">
+  <div class="brand-bar-inner">
+    <div class="brand-mark">
+      <span class="brand-mark-logo">next<i>i</i>va</span>
+      <span class="brand-mark-divider"></span>
+      <span class="brand-mark-product">ROI Calculator</span>
+    </div>
+    <div class="brand-bar-meta">Contact Center · HEART AI Evaluation</div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Cost Analysis · Quality Management</div>
+    <h1>The economics of evaluating <em>every</em> call, not just the ones you sampled.</h1>
+    <p class="hero-sub">
+      Compare the true cost of manual Quality Assurance against AI-powered HEART evaluation.
+      Edit the inputs below to model your operation. All figures recalculate instantly. Built for honest
+      conversations with technical buyers — variance, format choice, and operational overhead included.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Methodology</div>
+        <div class="hero-meta-value">Low · Expected · High</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Pricing Reference</div>
+        <div class="hero-meta-value">Gemini 2.5 Flash · May 2026</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Manual QA Benchmark</div>
+        <div class="hero-meta-value">Industry Sources 2025–26</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ SECTION 1: INPUTS ============ -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-head-left">
+      <div class="section-num">Section 01 · Inputs</div>
+      <h2>Tell us about <em>your</em> contact center.</h2>
+      <p class="section-sub">
+        Every cell below is editable. The Expected column reflects industry-typical values; Low and High
+        bracket the realistic variance range. All downstream calculations update as you type.
+      </p>
+    </div>
+  </div>
+
+  <div class="inputs-grid">
+
+    <!-- Volume -->
+    <div class="input-card">
+      <div class="input-card-head">
+        <div class="input-card-num">1</div>
+        <div class="input-card-title">Call Volume</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Calls handled per week</label>
+        <input type="number" id="callsPerWeek" value="2000" min="0" step="100">
+        <div class="input-help">Patient Access, scheduling, customer service — your weekly inbound or outbound volume</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Weeks per year</label>
+        <input type="number" id="weeksPerYear" value="52" min="1" max="52">
+      </div>
+    </div>
+
+    <!-- Manual QA -->
+    <div class="input-card">
+      <div class="input-card-head">
+        <div class="input-card-num">2</div>
+        <div class="input-card-title">Manual QA</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Review time per call (minutes)</label>
+        <div class="input-triple">
+          <div class="input-triple-cell"><div class="input-triple-label">Low</div><input type="number" class="low" id="reviewTimeLow" value="15"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">Exp.</div><input type="number" class="expected" id="reviewTimeExp" value="20"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">High</div><input type="number" class="high" id="reviewTimeHigh" value="25"></div>
+        </div>
+        <div class="input-help">Industry benchmark: 15–25 min (listen, score, notes)</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Loaded hourly rate (USD)</label>
+        <div class="input-triple">
+          <div class="input-triple-cell"><div class="input-triple-label">Low</div><input type="number" class="low" id="hourlyRateLow" value="28"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">Exp.</div><input type="number" class="expected" id="hourlyRateExp" value="35"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">High</div><input type="number" class="high" id="hourlyRateHigh" value="45"></div>
+        </div>
+        <div class="input-help">Base ~$28 · loaded with benefits ~$35 · senior/regulated ~$45</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">QA coverage (% of calls reviewed)</label>
+        <div class="input-triple">
+          <div class="input-triple-cell"><div class="input-triple-label">Low</div><input type="number" class="low" id="coverageLow" value="1" step="0.5"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">Exp.</div><input type="number" class="expected" id="coverageExp" value="5" step="0.5"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">High</div><input type="number" class="high" id="coverageHigh" value="10" step="0.5"></div>
+        </div>
+        <div class="input-help">1% lean · 5% typical · 10% aggressive (rare in practice)</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">QA analyst loaded annual cost (USD)</label>
+        <input type="number" id="analystCost" value="60000" step="1000">
+        <div class="input-help">Salary + benefits + tools + training</div>
+      </div>
+    </div>
+
+    <!-- HEART AI tokens -->
+    <div class="input-card">
+      <div class="input-card-head">
+        <div class="input-card-num">3</div>
+        <div class="input-card-title">HEART AI Tokens</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Prompt template tokens (fixed)</label>
+        <input type="number" id="promptTokens" value="7500" step="100">
+        <div class="input-help">v5.x HEART evaluation prompt — same every call</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Transcript tokens per call</label>
+        <div class="input-triple">
+          <div class="input-triple-cell"><div class="input-triple-label">Low</div><input type="number" class="low" id="transcriptLow" value="800"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">Exp.</div><input type="number" class="expected" id="transcriptExp" value="2500"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">High</div><input type="number" class="high" id="transcriptHigh" value="6000"></div>
+        </div>
+        <div class="input-help">Short hangup · avg 2–3 min · long 10+ min interpreter call</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Output HTML tokens per call</label>
+        <div class="input-triple">
+          <div class="input-triple-cell"><div class="input-triple-label">Low</div><input type="number" class="low" id="outputLow" value="3000"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">Exp.</div><input type="number" class="expected" id="outputExp" value="4500"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">High</div><input type="number" class="high" id="outputHigh" value="6500"></div>
+        </div>
+        <div class="input-help">Minimal eval · avg dashboard · full with risk flags + coaching</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Internal reasoning tokens per call</label>
+        <div class="input-triple">
+          <div class="input-triple-cell"><div class="input-triple-label">Low</div><input type="number" class="low" id="reasoningLow" value="1500"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">Exp.</div><input type="number" class="expected" id="reasoningExp" value="3000"></div>
+          <div class="input-triple-cell"><div class="input-triple-label">High</div><input type="number" class="high" id="reasoningHigh" value="5000"></div>
+        </div>
+        <div class="input-help">Gemini charges for chain-of-thought reasoning · varies by model and complexity</div>
+      </div>
+    </div>
+
+    <!-- AI Pricing -->
+    <div class="input-card">
+      <div class="input-card-head">
+        <div class="input-card-num">4</div>
+        <div class="input-card-title">AI Pricing & Overhead</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Gemini model</label>
+        <select id="modelPreset">
+          <option value="flash">Gemini 2.5 Flash (currently deployed)</option>
+          <option value="pro">Gemini 2.5 Pro (premium)</option>
+          <option value="flash-lite">Gemini 2.5 Flash-Lite (lowest cost)</option>
+          <option value="custom">Custom (edit prices manually)</option>
+        </select>
+        <div class="input-help">Selecting a model auto-fills its list prices below · current FMOL deployment uses Flash</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Input price per 1M tokens (USD)</label>
+        <input type="number" id="inputPrice" value="0.075" step="0.001">
+        <div class="input-help">Gemini 2.5 Flash list price · ≤200K context window</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Output price per 1M tokens (USD)</label>
+        <input type="number" id="outputPrice" value="0.30" step="0.01">
+      </div>
+      <div class="input-row">
+        <label class="input-label">Volume discount factor</label>
+        <input type="number" id="volumeDiscount" value="1.0" step="0.05" min="0.1" max="1.0">
+        <div class="input-help">1.0 = list price · Enterprise 0.6–0.8 · Batch mode 0.5</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Output format multiplier</label>
+        <select id="formatMultiplier">
+          <option value="1.0">HTML dashboard (1.0x · current)</option>
+          <option value="0.35">Markdown output (0.35x · ~65% reduction)</option>
+          <option value="0.25">JSON only (0.25x · ~75% reduction)</option>
+        </select>
+        <div class="input-help">HTML carries a token tax for inline styling overhead</div>
+      </div>
+      <div class="input-row">
+        <label class="input-label">Failed evaluation retry rate (%)</label>
+        <input type="number" id="retryRate" value="5" step="1" min="0" max="50">
+        <div class="input-help">Each retry costs full tokens again — pad for resilience</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RESULTS BAND ============ -->
+<section class="results-band">
+  <div class="results-inner">
+    <div class="results-head">
+      <div class="section-num">Section 02 · Headline Numbers</div>
+      <h2>The per-call cost of <em>seeing</em> every call.</h2>
+    </div>
+
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-label">Manual QA · Per Call</div>
+        <div class="result-value" id="manualPerCall">$11.67</div>
+        <div class="result-detail">Average reviewed call (15–25 min × loaded hourly rate)</div>
+        <div class="result-range">
+          <div class="result-range-item">
+            <span class="result-range-label">Low</span>
+            <span class="result-range-value" id="manualPerCallLow">$7.00</span>
+          </div>
+          <div class="result-range-item">
+            <span class="result-range-label">High</span>
+            <span class="result-range-value" id="manualPerCallHigh">$18.75</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-label">HEART AI · Per Call</div>
+        <div class="result-value highlight" id="aiPerCall">$0.09</div>
+        <div class="result-detail">Token cost with retry overhead included</div>
+        <div class="result-range">
+          <div class="result-range-item">
+            <span class="result-range-label">Low</span>
+            <span class="result-range-value" id="aiPerCallLow">$0.06</span>
+          </div>
+          <div class="result-range-item">
+            <span class="result-range-label">High</span>
+            <span class="result-range-value" id="aiPerCallHigh">$0.12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-label">Cost Multiple</div>
+        <div class="result-value highlight" id="costMultiple">127×</div>
+        <div class="result-detail">Manual QA costs this many times more per reviewed call</div>
+        <div class="result-range">
+          <div class="result-range-item">
+            <span class="result-range-label">Low</span>
+            <span class="result-range-value" id="costMultipleLow">124×</span>
+          </div>
+          <div class="result-range-item">
+            <span class="result-range-label">High</span>
+            <span class="result-range-value" id="costMultipleHigh">162×</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-label">Coverage Gap Closed</div>
+        <div class="result-value positive" id="coverageGap">95pp</div>
+        <div class="result-detail">Percentage points of additional call coverage</div>
+        <div class="result-range">
+          <div class="result-range-item">
+            <span class="result-range-label">Manual</span>
+            <span class="result-range-value" id="manualCoverage">5%</span>
+          </div>
+          <div class="result-range-item">
+            <span class="result-range-label">AI</span>
+            <span class="result-range-value">100%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ SECTION 3: ANNUAL COMPARISON ============ -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-head-left">
+      <div class="section-num">Section 03 · Annual Math</div>
+      <h2>Full-year economics at <em>your</em> volume.</h2>
+      <p class="section-sub">
+        Year-over-year cost across three scenarios. Manual QA's 5% sampling vs HEART's 100% coverage —
+        and a third column showing what manual would cost if you wanted apples-to-apples.
+      </p>
+    </div>
+  </div>
+
+  <div class="comparison-wrap">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Low</th>
+          <th>Expected</th>
+          <th>High</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Annual call volume</td>
+          <td class="numeric" id="annualVolumeLow"></td>
+          <td class="numeric" id="annualVolumeExp"></td>
+          <td class="numeric" id="annualVolumeHigh"></td>
+        </tr>
+        <tr>
+          <td>Calls reviewed manually (sampled)</td>
+          <td class="numeric" id="callsReviewedLow"></td>
+          <td class="numeric" id="callsReviewedExp"></td>
+          <td class="numeric" id="callsReviewedHigh"></td>
+        </tr>
+        <tr>
+          <td>Manual QA annual cost (at sample rate)</td>
+          <td class="numeric" id="manualAnnualLow"></td>
+          <td class="numeric" id="manualAnnualExp"></td>
+          <td class="numeric" id="manualAnnualHigh"></td>
+        </tr>
+        <tr>
+          <td>Manual QA annual cost (hypothetical 100%)</td>
+          <td class="numeric" id="manualFullLow"></td>
+          <td class="numeric" id="manualFullExp"></td>
+          <td class="numeric" id="manualFullHigh"></td>
+        </tr>
+        <tr>
+          <td>QA analyst headcount for 100% manual coverage</td>
+          <td class="numeric" id="headcountLow"></td>
+          <td class="numeric" id="headcountExp"></td>
+          <td class="numeric" id="headcountHigh"></td>
+        </tr>
+        <tr>
+          <td>HEART AI annual cost (100% coverage)</td>
+          <td class="numeric" id="aiAnnualLow"></td>
+          <td class="numeric" id="aiAnnualExp"></td>
+          <td class="numeric" id="aiAnnualHigh"></td>
+        </tr>
+        <tr class="total">
+          <td>Annual savings vs manual sampling</td>
+          <td class="numeric" id="savingsLow"></td>
+          <td class="numeric" id="savingsExp"></td>
+          <td class="numeric" id="savingsHigh"></td>
+        </tr>
+        <tr class="total">
+          <td>Additional calls evaluated by HEART</td>
+          <td class="numeric" id="additionalCallsLow"></td>
+          <td class="numeric" id="additionalCallsExp"></td>
+          <td class="numeric" id="additionalCallsHigh"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ SECTION 4: VOLUME SCENARIOS ============ -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-head-left">
+      <div class="section-num">Section 04 · Volume Scenarios</div>
+      <h2>How the math scales <em>across</em> operation sizes.</h2>
+      <p class="section-sub">
+        From small clinic operations to enterprise health systems — using the Expected scenario from above.
+        Per-call economics hold across volume; absolute savings grow linearly.
+      </p>
+    </div>
+  </div>
+
+  <div class="scenarios" id="scenariosGrid">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<!-- ============ SECTION 5: CONSIDERATIONS ============ -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-head-left">
+      <div class="section-num">Section 05 · Considerations</div>
+      <h2>What this calculator <em>doesn't</em> capture.</h2>
+      <p class="section-sub">
+        Honest caveats for the technical buyer. The math above is defensible at the Expected case
+        and FMOL volume; these are the variables where the picture can shift.
+      </p>
+    </div>
+  </div>
+
+  <div class="considerations">
+    <div class="consideration">
+      <div class="consideration-num">01</div>
+      <h3>Linearity at scale</h3>
+      <p>
+        The model assumes per-call token cost stays flat as volume grows. At enterprise scale,
+        committed-use discounts and Vertex AI batch processing can reduce per-call cost by
+        <strong>30–50%</strong>. List pricing is the worst case, not the only case.
+      </p>
+    </div>
+
+    <div class="consideration">
+      <div class="consideration-num">02</div>
+      <h3>Token consumption variance</h3>
+      <p>
+        Real per-call cost varies <strong>7x</strong> between a 30-second hangup and a 12-minute
+        interpreter call. The Low/Expected/High columns bracket that variance, but distribution
+        matters more than average for budgeting.
+      </p>
+    </div>
+
+    <div class="consideration">
+      <div class="consideration-num">03</div>
+      <h3>Format choice carries a token tax</h3>
+      <p>
+        HTML output for in-NCC rendering uses <strong>3–5x more tokens</strong> than JSON. Choose the
+        Markdown or JSON option in the format dropdown to see the savings — typically <strong>65–75%</strong>
+        output token reduction at the cost of requiring client-side rendering.
+      </p>
+    </div>
+
+    <div class="consideration">
+      <div class="consideration-num">04</div>
+      <h3>Operational overhead</h3>
+      <p>
+        Retry rates, audit logging, transcription costs, and observability infrastructure add real
+        cost the token math doesn't capture. The 5% retry default is conservative; real production
+        should track p95 actuals.
+      </p>
+    </div>
+
+    <div class="consideration">
+      <div class="consideration-num">05</div>
+      <h3>When manual still wins</h3>
+      <p>
+        Low volume + high complexity + regulated sign-off requirements can shift the math. Below
+        roughly <strong>500 calls/month</strong> with deeply subjective evaluation needs, a small
+        human team may provide better judgment per call.
+      </p>
+    </div>
+
+    <div class="consideration">
+      <div class="consideration-num">06</div>
+      <h3>What we recommend instead</h3>
+      <p>
+        HEART AI handles 100% screening for compliance, accuracy, and behavioral patterns. Your QA
+        team redirects from listening-and-scoring to <strong>coaching agents</strong> on what the AI
+        surfaces. Your team gets <strong>smarter</strong>, not smaller.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">next<i>i</i>va</div>
+        <div class="footer-tag">Contact Center · HEART AI Evaluation</div>
+      </div>
+      <div class="footer-disclaimer">
+        Figures derived from Gemini 2.5 Flash list pricing (currently deployed model, May 2026)
+        and published contact center QA benchmarks. Model selector above lets you compare against
+        Pro and Flash-Lite. Actual customer costs depend on negotiated pricing, deployment specifics,
+        call complexity distribution, and infrastructure choices. Use this calculator as a directional
+        model for sales conversations and budget planning, not as a binding price quote.
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>HEART Framework v5.x</span>
+      <span>Built for Patient Access · Quality Programs</span>
+      <span>© 2026 Nextiva</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============ CALCULATION ENGINE ============
+
+function num(id) {
+  return parseFloat(document.getElementById(id).value) || 0;
+}
+
+function fmt(n, opts = {}) {
+  const { decimals = 0, prefix = '', suffix = '' } = opts;
+  if (!isFinite(n)) return '—';
+  return prefix + n.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }) + suffix;
+}
+
+function fmtMoney(n, decimals = 0) {
+  return fmt(n, { prefix: '$', decimals });
+}
+
+function calculate() {
+  // ----- Inputs -----
+  const callsPerWeek = num('callsPerWeek');
+  const weeksPerYear = num('weeksPerYear');
+  const annualVolume = callsPerWeek * weeksPerYear;
+
+  const reviewTime = { low: num('reviewTimeLow'), exp: num('reviewTimeExp'), high: num('reviewTimeHigh') };
+  const hourlyRate = { low: num('hourlyRateLow'), exp: num('hourlyRateExp'), high: num('hourlyRateHigh') };
+  const coverage = { low: num('coverageLow') / 100, exp: num('coverageExp') / 100, high: num('coverageHigh') / 100 };
+  const analystCost = num('analystCost');
+
+  const promptTokens = num('promptTokens');
+  const transcript = { low: num('transcriptLow'), exp: num('transcriptExp'), high: num('transcriptHigh') };
+  const output = { low: num('outputLow'), exp: num('outputExp'), high: num('outputHigh') };
+  const reasoning = { low: num('reasoningLow'), exp: num('reasoningExp'), high: num('reasoningHigh') };
+
+  const inputPrice = num('inputPrice');
+  const outputPrice = num('outputPrice');
+  const volumeDiscount = num('volumeDiscount');
+  const formatMult = parseFloat(document.getElementById('formatMultiplier').value);
+  const retryRate = num('retryRate') / 100;
+
+  // ----- Manual QA per-call cost -----
+  const manualPerCall = {
+    low: (reviewTime.low / 60) * hourlyRate.low,
+    exp: (reviewTime.exp / 60) * hourlyRate.exp,
+    high: (reviewTime.high / 60) * hourlyRate.high,
+  };
+
+  // ----- HEART AI per-call cost -----
+  const aiCost = (scen) => {
+    const inputTokens = (promptTokens + transcript[scen]) * formatMult;
+    const outputTokens = (output[scen] + reasoning[scen]) * formatMult;
+    const inputCost = (inputTokens / 1e6) * inputPrice * volumeDiscount;
+    const outputCost = (outputTokens / 1e6) * outputPrice * volumeDiscount;
+    return (inputCost + outputCost) * (1 + retryRate);
+  };
+  const aiPerCall = { low: aiCost('low'), exp: aiCost('exp'), high: aiCost('high') };
+
+  // ----- Multiples -----
+  const multiple = {
+    low: manualPerCall.low / aiPerCall.low,
+    exp: manualPerCall.exp / aiPerCall.exp,
+    high: manualPerCall.high / aiPerCall.high,
+  };
+
+  // ----- Annual -----
+  const callsReviewed = {
+    low: annualVolume * coverage.low,
+    exp: annualVolume * coverage.exp,
+    high: annualVolume * coverage.high,
+  };
+  const manualAnnual = {
+    low: callsReviewed.low * manualPerCall.low,
+    exp: callsReviewed.exp * manualPerCall.exp,
+    high: callsReviewed.high * manualPerCall.high,
+  };
+  const manualFull = {
+    low: annualVolume * manualPerCall.low,
+    exp: annualVolume * manualPerCall.exp,
+    high: annualVolume * manualPerCall.high,
+  };
+  const headcount = {
+    low: manualFull.low / analystCost,
+    exp: manualFull.exp / analystCost,
+    high: manualFull.high / analystCost,
+  };
+  const aiAnnual = {
+    low: annualVolume * aiPerCall.low,
+    exp: annualVolume * aiPerCall.exp,
+    high: annualVolume * aiPerCall.high,
+  };
+  const savings = {
+    low: manualAnnual.low - aiAnnual.low,
+    exp: manualAnnual.exp - aiAnnual.exp,
+    high: manualAnnual.high - aiAnnual.high,
+  };
+  const additionalCalls = {
+    low: annualVolume - callsReviewed.low,
+    exp: annualVolume - callsReviewed.exp,
+    high: annualVolume - callsReviewed.high,
+  };
+
+  // ----- Render: Results band -----
+  document.getElementById('manualPerCall').textContent = fmtMoney(manualPerCall.exp, 2);
+  document.getElementById('manualPerCallLow').textContent = fmtMoney(manualPerCall.low, 2);
+  document.getElementById('manualPerCallHigh').textContent = fmtMoney(manualPerCall.high, 2);
+
+  // Adaptive decimal precision for AI per-call (Flash is sub-penny, Pro is cents)
+  const aiDecimals = aiPerCall.exp < 0.01 ? 4 : (aiPerCall.exp < 0.10 ? 3 : 2);
+  const aiDecimalsLow = aiPerCall.low < 0.01 ? 4 : (aiPerCall.low < 0.10 ? 3 : 2);
+  const aiDecimalsHigh = aiPerCall.high < 0.01 ? 4 : (aiPerCall.high < 0.10 ? 3 : 2);
+  document.getElementById('aiPerCall').textContent = fmtMoney(aiPerCall.exp, aiDecimals);
+  document.getElementById('aiPerCallLow').textContent = fmtMoney(aiPerCall.low, aiDecimalsLow);
+  document.getElementById('aiPerCallHigh').textContent = fmtMoney(aiPerCall.high, aiDecimalsHigh);
+
+  document.getElementById('costMultiple').textContent = fmt(multiple.exp, { decimals: 0 }) + '×';
+  document.getElementById('costMultipleLow').textContent = fmt(multiple.low, { decimals: 0 }) + '×';
+  document.getElementById('costMultipleHigh').textContent = fmt(multiple.high, { decimals: 0 }) + '×';
+
+  const gapPP = Math.round((1 - coverage.exp) * 100);
+  document.getElementById('coverageGap').textContent = gapPP + 'pp';
+  document.getElementById('manualCoverage').textContent = (coverage.exp * 100).toFixed(0) + '%';
+
+  // ----- Render: Annual comparison table -----
+  document.getElementById('annualVolumeLow').innerHTML = '<strong>' + fmt(annualVolume) + '</strong>';
+  document.getElementById('annualVolumeExp').innerHTML = '<strong>' + fmt(annualVolume) + '</strong>';
+  document.getElementById('annualVolumeHigh').innerHTML = '<strong>' + fmt(annualVolume) + '</strong>';
+
+  document.getElementById('callsReviewedLow').innerHTML = '<strong>' + fmt(callsReviewed.low) + '</strong>';
+  document.getElementById('callsReviewedExp').innerHTML = '<strong>' + fmt(callsReviewed.exp) + '</strong>';
+  document.getElementById('callsReviewedHigh').innerHTML = '<strong>' + fmt(callsReviewed.high) + '</strong>';
+
+  document.getElementById('manualAnnualLow').innerHTML = '<strong>' + fmtMoney(manualAnnual.low) + '</strong>';
+  document.getElementById('manualAnnualExp').innerHTML = '<strong>' + fmtMoney(manualAnnual.exp) + '</strong>';
+  document.getElementById('manualAnnualHigh').innerHTML = '<strong>' + fmtMoney(manualAnnual.high) + '</strong>';
+
+  document.getElementById('manualFullLow').innerHTML = '<strong>' + fmtMoney(manualFull.low) + '</strong>';
+  document.getElementById('manualFullExp').innerHTML = '<strong>' + fmtMoney(manualFull.exp) + '</strong>';
+  document.getElementById('manualFullHigh').innerHTML = '<strong>' + fmtMoney(manualFull.high) + '</strong>';
+
+  document.getElementById('headcountLow').innerHTML = '<strong>' + fmt(headcount.low, { decimals: 1 }) + '</strong>';
+  document.getElementById('headcountExp').innerHTML = '<strong>' + fmt(headcount.exp, { decimals: 1 }) + '</strong>';
+  document.getElementById('headcountHigh').innerHTML = '<strong>' + fmt(headcount.high, { decimals: 1 }) + '</strong>';
+
+  document.getElementById('aiAnnualLow').innerHTML = '<strong>' + fmtMoney(aiAnnual.low) + '</strong>';
+  document.getElementById('aiAnnualExp').innerHTML = '<strong>' + fmtMoney(aiAnnual.exp) + '</strong>';
+  document.getElementById('aiAnnualHigh').innerHTML = '<strong>' + fmtMoney(aiAnnual.high) + '</strong>';
+
+  document.getElementById('savingsLow').innerHTML = '<strong>' + fmtMoney(savings.low) + '</strong>';
+  document.getElementById('savingsExp').innerHTML = '<strong>' + fmtMoney(savings.exp) + '</strong>';
+  document.getElementById('savingsHigh').innerHTML = '<strong>' + fmtMoney(savings.high) + '</strong>';
+
+  document.getElementById('additionalCallsLow').innerHTML = '<strong>' + fmt(additionalCalls.low) + '</strong>';
+  document.getElementById('additionalCallsExp').innerHTML = '<strong>' + fmt(additionalCalls.exp) + '</strong>';
+  document.getElementById('additionalCallsHigh').innerHTML = '<strong>' + fmt(additionalCalls.high) + '</strong>';
+
+  // ----- Render: Volume scenarios -----
+  const scenarios = [
+    { tier: 'Tier 1', name: 'Small', volume: 500 },
+    { tier: 'Tier 2', name: 'Mid', volume: 2000 },
+    { tier: 'Tier 3', name: 'Large', volume: 5000 },
+    { tier: 'Tier 4', name: 'Enterprise', volume: 10000 },
+  ];
+  const grid = document.getElementById('scenariosGrid');
+  grid.innerHTML = scenarios.map(s => {
+    const annual = s.volume * weeksPerYear;
+    const manualCost = annual * coverage.exp * manualPerCall.exp;
+    const aiCost = annual * aiPerCall.exp;
+    const sav = manualCost - aiCost;
+    const heads = (annual * manualPerCall.exp) / analystCost;
+    return `
+      <div class="scenario">
+        <div class="scenario-tier">${s.tier}</div>
+        <div class="scenario-name">${s.name}</div>
+        <div class="scenario-volume">${fmt(s.volume)} calls/week · ${fmt(annual)} annual</div>
+        <div class="scenario-stats">
+          <div class="scenario-stat">
+            <span class="scenario-stat-label">Manual QA (sample)</span>
+            <span class="scenario-stat-value">${fmtMoney(manualCost)}</span>
+          </div>
+          <div class="scenario-stat">
+            <span class="scenario-stat-label">HEART AI (100%)</span>
+            <span class="scenario-stat-value">${fmtMoney(aiCost)}</span>
+          </div>
+          <div class="scenario-stat">
+            <span class="scenario-stat-label">Heads for 100% manual</span>
+            <span class="scenario-stat-value">${fmt(heads, { decimals: 1 })}</span>
+          </div>
+        </div>
+        <div class="scenario-savings">
+          <div class="scenario-savings-label">Annual Savings</div>
+          <div class="scenario-savings-value">${fmtMoney(sav)}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Model preset prices (USD per 1M tokens, list price as of May 2026)
+const MODEL_PRICES = {
+  flash: { input: 0.075, output: 0.30, helpText: 'Gemini 2.5 Flash list price · ≤200K context window' },
+  pro: { input: 1.25, output: 10.00, helpText: 'Gemini 2.5 Pro list price · ≤200K context window' },
+  'flash-lite': { input: 0.0375, output: 0.15, helpText: 'Gemini 2.5 Flash-Lite list price · ≤200K context window' },
+  custom: null  // Don't auto-fill — let user edit freely
+};
+
+function applyModelPreset() {
+  const preset = document.getElementById('modelPreset').value;
+  const prices = MODEL_PRICES[preset];
+  if (prices) {
+    document.getElementById('inputPrice').value = prices.input;
+    document.getElementById('outputPrice').value = prices.output;
+    // Update the help text under input price
+    const inputHelp = document.querySelector('#inputPrice + .input-help');
+    if (inputHelp) inputHelp.textContent = prices.helpText;
+  }
+  calculate();
+}
+
+document.getElementById('modelPreset').addEventListener('change', applyModelPreset);
+
+// Attach to all inputs
+document.querySelectorAll('input, select').forEach(el => {
+  el.addEventListener('input', calculate);
+  el.addEventListener('change', calculate);
+});
+
+// Initial render
+calculate();
+</script>
+
+</body>
+</html>
